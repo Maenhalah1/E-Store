@@ -69,7 +69,7 @@ abstract class AbstractModal {
         return $stmt->execute();
     }
 
-    protected function delete(){
+    public function delete(){
         global $con;
         $sql = "DELETE FROM " . static::$tableName . " WHERE " . static::$primaryKey . " = " . $this->get_primary_key();
         $stmt = $con->prepare($sql);

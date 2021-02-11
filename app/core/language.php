@@ -15,10 +15,10 @@ class Language{
             require_once $lang_path;
 
             if(isset($lang_data_content) && !empty($lang_data_content))
-                $this->_content_Dictionry += $lang_data_content;
+                $this->_content_Dictionry = array_merge($this->_content_Dictionry, $lang_data_content);
             
             if( isset($lang_data_head) && !empty($lang_data_head))
-                    $this->_head_Dictionry += $lang_data_head;
+                    $this->_head_Dictionry = array_merge($this->_head_Dictionry,$lang_data_head);
             
         }else{
             //trigger_error("The Language File is not Found", E_USER_ERROR);

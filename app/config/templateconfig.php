@@ -11,8 +11,10 @@ return [
 
     'HeaderResourses' => [
         'CSS' => [
-            'googleFonts'   => 'https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap',
-            'main'          => CSS_PATH .  '/main.css'
+            'googleFonts1'   => 'https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap',
+            'googleFonts2'   => 'https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap',
+            'googleFonts3'   => 'https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap',
+            'mainen'          => CSS_PATH .  '/main' . $_SESSION['lang'] . '.css',
         ],
         'JS' => []
     ],

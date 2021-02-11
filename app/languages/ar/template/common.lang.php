@@ -1,7 +1,7 @@
 <?php
 $lang_data_content = [
-    'text_notfound_page'  => "صفحة غير موجودة",
-    'text_header_nav_title' => 'صفحة مدير التطبيق',
+    'text_notfound_page'  => "الصفحة غير موجودة",
+    'text_header_nav_title' =>'اللوحة الارئيسية',
     'text_left_nav_dashboard'   => 'لوحة التحكم',
     'text_left_nav_users'   => 'المستخدمين',
     'text_left_nav_store'   => 'المخزن',
@@ -15,5 +15,6 @@ $lang_data_content = [
     'text_left_nav_transactions_sales'   => 'المبيعات',
     'text_left_nav_notifications'   => 'التنبيهات',
     'text_left_nav_change_lang' => 'تغيير اللغة',
-    'text_left_nav_log_out'     => 'تسجيل الخروج'
+    'text_left_nav_log_out'     => 'تسجيل الخروج',
+    'text_user_type'     => 'الأدارة',
 ];

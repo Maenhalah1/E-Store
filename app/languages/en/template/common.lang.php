@@ -1,7 +1,7 @@
 <?php
 $lang_data_content = [
-    'text_notfound_page'   => 'Not Found Page',
-    'text_header_nav_title' => 'MVC APP',
+    'text_notfound_page'   => 'The Page is Not Found',
+    'text_header_nav_title' => 'Dashboard',
     'text_left_nav_dashboard'   => 'Dashboard',
     'text_left_nav_users'   => 'Users',
     'text_left_nav_store'   => 'Store',
@@ -15,5 +15,7 @@ $lang_data_content = [
     'text_left_nav_transactions_sales'   => 'Sales',
     'text_left_nav_notifications'   => 'Notifications',
     'text_left_nav_change_lang'     => "Change Language",
-    'text_left_nav_log_out'     => "Log out"
+    'text_left_nav_log_out'     => "Log out",
+    'text_user_type'     => 'Administration',
+    
 ];

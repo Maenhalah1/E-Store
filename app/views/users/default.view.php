@@ -1,4 +1,13 @@
       <div class="page-slt">
+          <div class="sublinks">
+            <a class="link-box" href="/usersgroups">
+            <?=$text_links_groups?>
+            </a>
+            <a class="link-box" href="/privileges">
+                <?=$text_links_privileges?>
+            </a>
+          </div>
+         
           <a href="/employee/add" class="add-btn"><?=$text_adduser?></a>
             <table class="table-show-emp-info">
                 <tr>
@@ -9,7 +18,7 @@
                     <td><?=$text_table_SubDate?></td>
                     <td><?=$text_table_lastlogin?></td>
                     <td><?=$text_table_usergroup?></td>
-                    <td>Control</td>
+                    <td><?=$text_table_control?></td>
                 </tr>
         <?php if(isset($users) && !empty($users)):?>
                 <?php foreach ($users as $users):?>

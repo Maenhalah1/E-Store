@@ -1,11 +1,16 @@
 <?php
 namespace STORE\CORE;
+use STORE\CORE\functions;
+
 class Template {
 
+    use functions;
     private $_template_parts;
     private $_view_path;
     private $_data;
     private $_head_data=[];
+
+    private $controller;
     
 
     public function __construct(array $templateparts)
@@ -19,6 +24,10 @@ class Template {
 
     public function setData($data) {
         $this->_data = $data;
+    }
+
+    public function setController($controller) {
+        $this->controller = $controller;
     }
 
     public function setHeadData($headdata) {

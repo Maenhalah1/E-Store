@@ -7,7 +7,7 @@ class Router
     const ControllersNameSpace  = "STORE\Controllers\\";
     const NotFoundController    = "NotFoundController";
     const NotFoundDir           = "notfound";
-    const NotFoundView          = "noview";
+    const NotFoundView          = "default";
 
     private $_controller="index";
     private $_action="default";
