@@ -38,6 +38,18 @@ class GroupPrivilegesModel extends AbstractModal
     }
 
 
+    public static function getGroupPrivilegesIds($groupid){
+
+        $privilegesGroup = self::getByCondition(array("groupid" => $groupid));
+        $privilegesGroupIds = [];
+        if($privilegesGroup !== false){
+            foreach($privilegesGroup as $privilegegroup){
+                $privilegesGroupIds[] = $privilegegroup->privilegeid;
+            }   
+        }
+        return $privilegesGroupIds;
+    }
+
 
 
 

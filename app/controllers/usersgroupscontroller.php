@@ -28,7 +28,8 @@ class UsersGroupsController extends AbstractController
             if($result){
                 $groupid =  $group->get_primary_key();
                 if(isset($_POST['privileges']) && !empty($_POST['privileges'])){
-                    foreach($_POST['privileges'] as $privilege){
+                    $privileges = $_POST['privileges'];
+                    foreach($privileges as $privilege){
                         $privilege = $this->IntFilter($privilege);
                         $groupPrivilege = new GroupPrivilegesModel();
                         $groupPrivilege->groupid = $groupid;
@@ -51,17 +52,11 @@ class UsersGroupsController extends AbstractController
         if($group === false){
             $this->redirect("/usersgroups");
         }
+
         $this->language->load($this->_controller . "|" . "labels");
-        $privilegesGroup = GroupPrivilegesModel::getByCondition(array("groupid" => $groupid));
-        $privilegesGroupIds = [];
-        if($privilegesGroup !== false){
-            foreach($privilegesGroup as $privilegegroup){
-                $privilegesGroupIds[] = $privilegegroup->privilegeid;
-            }   
-        }
 
         $this->_data['privileges'] = PrivilegesModel::getAll();
-        $this->_data["privilegesGroup"] = $privilegesGroupIds;
+        $this->_data["privilegesGroup"] = $privilegesGroupIds = GroupPrivilegesModel::getGroupPrivilegesIds($groupid);
 
         if(isset($_POST['edit'])){
             $group->groupname = $this->StrFilter($_POST['groupname']);
