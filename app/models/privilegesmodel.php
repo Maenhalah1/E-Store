@@ -17,8 +17,8 @@ class PrivilegesModel extends AbstractModal
 
 
 
-    const PATTERN_VALIDATION_NAMES = "/^(?:[A-Za-z]){2,}$/";
-    const PATTER_SIPLT_Phonenumber = "/^([0-9]{3})([0-9]{7})$/";
+    const PATTER_VALIDATION_ENGLISH_NAMES = "/^(?:[A-Za-z\s]){2,}$/";
+    const PATTER_VALIDATION_ARABIC_NAMES = "/^(?:[\x{0621}-\x{064A}\s]){2,}$/u";
     const PATTERN_PRIVILEGE = "/^[A-Za-z]+\/[A-Za-z]+$/";
 
     // public function __construct($name,$salary,$tax,$Phonenumber){
@@ -44,14 +44,14 @@ class PrivilegesModel extends AbstractModal
 
         if(empty($this->privilegetitle)){
             $errors['privilegetitle'] = "Please Write The Privilege Title";
-        } elseif(preg_match(self::PATTERN_VALIDATION_NAMES, $this->privilegetitle)){
+        }else if(!preg_match(self::PATTER_VALIDATION_ENGLISH_NAMES, $this->privilegetitle) && !preg_match(self::PATTER_VALIDATION_ARABIC_NAMES, $this->privilegetitle)){
             $errors['privilegetitle'] = "Must be letters only and least 2 letter";
         }
         
         if(empty($this->privilege)){
-            $errors['privilegetitle'] = "Please Write The Privilege URL";
-        } elseif(preg_match(self::PATTERN_PRIVILEGE, $this->privilege)){
-            $errors['privilegetitle'] = "Must be like this Pattern ( privilege\actionprivilege )";
+            $errors['privilegeurl'] = "Please Write The Privilege URL";
+        } elseif(!preg_match(self::PATTERN_PRIVILEGE, $this->privilege)){
+            $errors['privilegeurl'] = "Must be like this Pattern ( privilege/actionprivilege )";
         }
 
         if(empty($errors))

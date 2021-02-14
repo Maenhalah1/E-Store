@@ -2,6 +2,7 @@
 namespace STORE\Controllers;
 use STORE\CORE\FilterInput;
 use STORE\CORE\functions;
+use STORE\CORE\Messenger;
 use STORE\MODELS\PrivilegesModel;
 
 class PrivilegesController extends AbstractController
@@ -16,7 +17,7 @@ class PrivilegesController extends AbstractController
     }
 
     public function createAction(){
-        $this->_language->load($this->_controller . "|" . "labels");
+        $this->language->load($this->_controller . "|" . "labels");
 
         if(isset($_POST['create'])){
             $privilege = new PrivilegesModel();
@@ -24,6 +25,7 @@ class PrivilegesController extends AbstractController
             $privilege->privilege = $this->StrFilter($_POST['privilegeurl']);
             $result = $privilege->save();
             if($result === true){
+                $this->masseges->addMassege("privilgeMessage","تم اضافة الصلاحية بنجاح");
                 $this->redirect("/privileges");
             }else{
                 var_dump($result);
@@ -38,7 +40,7 @@ class PrivilegesController extends AbstractController
         $privilege = PrivilegesModel::get_By_pk($id);
         if($privilege === false) $this->redirect("/privileges");
 
-        $this->_language->load($this->_controller . "|" . "labels");
+        $this->language->load($this->_controller . "|" . "labels");
 
         if(isset($_POST['edit'])){
             $privilege->privilegetitle = $this->StrFilter($_POST['privilegetitle']);
@@ -61,10 +63,11 @@ class PrivilegesController extends AbstractController
         $privilege = PrivilegesModel::get_By_pk($id);
         if($privilege === false) $this->redirect("/privileges");
 
-        $this->_language->load($this->_controller . "|" . "labels");
+        $this->language->load($this->_controller . "|" . "labels");
 
         if($privilege->delete())
         {
+            $this->masseges->addMassege("privilgeMessage","تم حذف الصلاحية بنجاح", Messenger::ERROR_MASSEGE);
             $this->redirect("/privileges");
         }
     }

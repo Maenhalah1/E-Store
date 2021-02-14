@@ -11,11 +11,17 @@ class Template {
     private $_head_data=[];
 
     private $controller;
-    
+    private $_registry;
+
 
     public function __construct(array $templateparts)
     {
         $this->_template_parts = $templateparts;
+    }
+
+    public function __get($name)
+    {
+        return isset($this->_registry->$name) ? $this->_registry->$name : "";
     }
 
     public function setView($viewpath) {
@@ -32,6 +38,10 @@ class Template {
 
     public function setHeadData($headdata) {
         $this->_head_data = $headdata;
+    }
+
+    public function set_Registry($registry){
+        $this->_registry = $registry;
     }
     
 

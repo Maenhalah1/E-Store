@@ -15,6 +15,31 @@ a{
 .wrapper{
     padding: 120px 243px 40px 0;
 }
+p.Massege {
+    font-size: 22px;
+    background-color: #222;
+    color:#fff;
+    width: 650px;
+    margin: 20px auto;
+    border-radius: 5px;
+    text-align: center;
+}
+p.Massege.t1 {
+    background-color: #83a95c;
+}
+p.Massege.t2 {
+    background-color: #a9294f;
+}
+p.Massege.t3 {
+    background-color: #fecd1a;
+
+}
+p.Massege.t4 {
+    background-color: #6f9eaf;
+}
+
+
+
 .top_nav{
     padding-right: 40px;
     position: fixed;
@@ -113,11 +138,12 @@ a{
       padding: 5px 15px;
       position: relative;
   }
-  .form-emp-info .form-field input , .form-emp-info .form-field label {
-      display: block;
-  }
-  
-  .form-emp-info .form-field input:not([type='submit']) {
+
+  .form-emp-info .form-field input[type='text'] , .form-emp-info .form-field label {
+    font-family: 'Cairo', sans-serif;
+    display: block;
+    }
+  .form-emp-info .form-field input[type='text'] {
       margin-top: 7px;
       width: 100%;
       height: 33px;
@@ -126,7 +152,7 @@ a{
       border: none;
       outline: none;
   }
-  .form-emp-info .form-field input:not([type='submit']):focus {
+  .form-emp-info .form-field input[type='text']{
       border: none;
       outline: none;
       border:1px solid #ccc;
@@ -138,12 +164,13 @@ a{
       font-weight: bold;
   }
   .form-emp-info input[type='submit'] {
+    font-family: 'Cairo', sans-serif;
       cursor: pointer;
       background: #01a001;
       color: #fff;
       padding: 10px;
       border: 1px solid #129c12;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       border-radius: 7px;
       margin-right: 10px;
@@ -155,6 +182,29 @@ a{
       background: #058805;
   }
   
+  .form-emp-info .form-field .choose-section{
+    width: 90%;
+    margin:5px 0;
+    border-top: 1px solid #999;
+    padding: 20px 8px;   
+  }
+
+  .form-emp-info .form-field .choose-section .checking-box:not(:first-child){
+    margin-top: 5px;
+  }
+
+  .form-emp-info .form-field .choose-section label {
+      display: inline;
+      margin-right: 5px;
+      font-size: 16px;
+  }
+
+  .form-emp-info .form-field .choose-section input[type='checkbox']{
+    width: 15px;
+    height: 15px;
+  }
+
+
   .table-show-emp-info{
       width: 100%;
       border-collapse: collapse;

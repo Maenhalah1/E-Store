@@ -14,12 +14,12 @@ class Router
     private $_params = array();
 
     private $_template;
-    private $_language;
+    private $_registry;
 
-    public function __construct(Template $template ,Language $language) {
+    public function __construct(Template $template ,Registry $registry) {
         $this->_parseUrl();
         $this->_template = $template;
-        $this->_language = $language;
+        $this->_registry = $registry;
     }
     private function _parseUrl(){
         $url_parts = trim($_SERVER['REQUEST_URI'],"/");
@@ -54,7 +54,7 @@ class Router
 
         $actionName = $this->_action . "Action";
         $controller->set_Controller_Action_Params($this->_controller, $this->_action, $this->_params);
-        $controller->set_Language($this->_language);
+        $controller->set_Registry($this->_registry);
         $controller->set_Template($this->_template);
         $controller->$actionName();
         //var_dump($controller);

@@ -7,6 +7,7 @@ class Language{
     private $_content_Dictionry = [];
     private $_head_Dictionry = [];
 
+
     public function load($path){
 
         $language   = $_SESSION['lang'];
@@ -24,6 +25,7 @@ class Language{
             //trigger_error("The Language File is not Found", E_USER_ERROR);
         }  
     }
+
 
     public function getContentDictionary(){
         return $this->_content_Dictionry;

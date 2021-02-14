@@ -1,5 +1,9 @@
       <div class="page-slt">
           <a href="/privileges/create" class="add-btn"><?=$text_addprivilege?></a>
+          <?php $massege = $this->masseges->getMassege("privilgeMessage");?>
+        <?php if($massege !== null):?>
+            <p class="Massege t<?=$massege[1]?>"><?=$massege[0]?><p>
+        <?php endif;?>
             <table class="table-show-emp-info">
                 <tr>
                     <td><?=$text_table_privilege?></td>

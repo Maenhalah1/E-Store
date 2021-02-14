@@ -10,4 +10,7 @@
 !defined('LANGUAGE_DEFAULT') ? define('LANGUAGE_DEFAULT', "en") : "";
 !defined('LANGUAGES_PATH') ? define('LANGUAGES_PATH', APP_PATH . DS . "languages") : "";
 
+define("SESSIONS_SAVE_PATH", dirname(dirname(dirname(realpath(__FILE__)))) . DS . "sessions");
+
+
 ?>

@@ -14,9 +14,9 @@ class UsersGroupsModel extends AbstractModal
 
 
 
-    const PATTER_VALIDATION_NAMES = "/^(?:[A-Za-z]){2,}$/";
-    const PATTER_SIPLT_Phonenumber = "/^([0-9]{3})([0-9]{7})$/";
-
+    const PATTER_VALIDATION_ENGLISH_NAMES = "/^(?:[A-Za-z\s]){2,}$/";
+    const PATTER_VALIDATION_ARABIC_NAMES = "/^(?:[\x{0621}-\x{064A}\s]){2,}$/u";
+     
     // public function __construct($name,$salary,$tax,$Phonenumber){
     //     $this->name = $name;
     //     $this->salary = $salary;
@@ -34,11 +34,41 @@ class UsersGroupsModel extends AbstractModal
     function set_primary_key($pk){
          $this->{static::$primaryKey} = $pk;
     }
+
+    private function vaildtionGroupDetails(){
+        $errors = [];
+        if(empty($this->groupname)){
+            $errors['groupname'] = "The Group name is Requiered, Please Write the Group Name";
+        }else if(!preg_match(self::PATTER_VALIDATION_ENGLISH_NAMES, $this->groupname) && !preg_match(self::PATTER_VALIDATION_ARABIC_NAMES, $this->groupname)){
+            $errors['groupname'] = "Must Be Letters Only and least 2 letters";
+        }
+
+        return empty($errors) ? true : $errors;
+    }
+
+    private function CreateGroup(){
+        $result = $this->vaildtionGroupDetails();
+        if($result === true){
+            return $this->create();
+        }else{
+            return $result;
+        }
+    }
+
+    private function UpdateGroup(){
+        $result = $this->vaildtionGroupDetails();
+        if($result === true){
+            return $this->update();
+        }else{
+            return $result;
+        }
+    }
+
     public function save(){
         if(empty($this->{static::$primaryKey})){
-            $this->create();
+            return $this->CreateGroup();
         }else{
-            $this->update();
+            return $this->UpdateGroup();
         }
     }
 

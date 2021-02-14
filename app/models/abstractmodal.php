@@ -133,6 +133,52 @@ abstract class AbstractModal {
     }
 
 
+    private static function bindByConditionParams(\PDOStatement  &$stmt, $colums){
+        foreach ($colums as $col => $value){
+                
+                $stmt->bindParam(':' . $col, $value);
+            }
+        }
+    
+
+    private static function prepareWhereCondition(array $colums){
+        $where = "";
+        $numberColums = count($colums);
+        for( $i=0; $i < $numberColums; $i++){
+            $where .= $colums[$i] . " = :" . $colums[$i];
+            if($i < ($numberColums-1)){
+                $where .= " AND ";
+            } 
+        }
+        return $where;
+    }
+
+    public static function getByCondition($colums, $options = []){
+        if(!is_array($colums) || empty($colums)){
+            trigger_error("The Function getByCondition Must contain Row name as array key and value as array value", E_USER_ERROR);
+            die();
+        }
+
+        global $con;
+        $cols = array_keys($colums);
+        $where = " WHERE " . static::prepareWhereCondition($cols);
+        $sql = "SELECT * FROM " . static::$tableName . $where;    
+        $stmt = $con->prepare($sql);
+        $prep = [];
+        foreach ($colums as $col => $value){        
+            $col = ":" . $col;
+            $prep[$col] = $value;
+        }
+       // static::bindByConditionParams($stmt, $colums);
+        if($stmt->execute($prep)){
+            $res = static::fetchClass($stmt);
+            return empty($res[0]) ? false : $res;
+        }else{
+            return false;
+        }
+    }
+
+
     public static function get($sql, array $schema){
         global $con;
         $stmt = $con->prepare($sql);
