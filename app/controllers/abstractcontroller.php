@@ -42,7 +42,7 @@ abstract class AbstractController
         $viewPath = VIEWS_PATH . DS . $this->_controller . DS . $this->_action . ".view.php";
         if(!file_exists($viewPath))
             $viewPath = VIEWS_PATH . DS . Router::NotFoundDir . DS . Router::NotFoundView . ".view.php";
-        $this->language->load("template" . "|" . "common");  
+        $this->language->load("template" . "|" . "common");
         $this->language->load(strtolower($this->_controller) . "|" . strtolower($this->_action));
         $this->_data = array_merge($this->language->getContentDictionary(), $this->_data);
         $this->_head_data = array_merge($this->language->getheadDictionary(), $this->_head_data);

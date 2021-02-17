@@ -10,6 +10,8 @@ use STORE\CORE\Registry;
 use STORE\CORE\Router;
 use STORE\CORE\SessionManager;
 use STORE\CORE\Template;
+use STORE\CORE\Validation;
+
 require_once (".." . DS . 'app' . DS . 'config' . DS . 'config.php');
 require_once (APP_PATH . DS . 'core' . DS . 'autoloading.php');
 
@@ -27,15 +29,18 @@ if(!isset($session->lang))
 
 $language = new Language();
 $Messenger = Messenger::getInstance($session);
+$Validation = Validation::getInstance($language, $Messenger);
 
 $registry = Registry::getInstance();
-$registry->session  = $session;
-$registry->language = $language;
-$registry->masseges = $Messenger;
+$registry->session      = $session;
+$registry->language     = $language;
+$registry->masseges     = $Messenger;
+$registry->validation   = $Validation;
 
 $template = new Template($template_parts);
 $con = $db->PDOconn;
 $run = new Router($template, $registry);
 $run->dispatch();
+
 ob_flush();
 ?>

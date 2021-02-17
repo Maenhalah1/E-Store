@@ -8,7 +8,7 @@
             </a>
           </div>
          
-          <a href="/employee/add" class="add-btn"><?=$text_adduser?></a>
+          <a href="/users/create" class="add-btn"><?=$text_adduser?></a>
             <table class="table-show-emp-info">
                 <tr>
                     <td>#<?=$text_table_userid?></td>

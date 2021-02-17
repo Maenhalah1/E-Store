@@ -12,8 +12,15 @@ class IndexController extends AbstractController
     use validate;
 
     public function defaultAction(){
-        $this->_data['valid'] = $this->date_validate("1999/5/5");
+        $this->language->load("validation" . "|" . "common");
+        $this->language->load("validation" . "|" . strtolower($this->_controller));
+        $this->language->load("template" . "|" . "common");
+        $this->language->load(strtolower($this->_controller) . "|" . strtolower($this->_action));
+
+        $this->_data['valid'] = $this->between_validate(4,1,4);
         $this->view();
+
+
     }
 
     public function addAction(){

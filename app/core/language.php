@@ -12,6 +12,7 @@ class Language{
 
         $language   = $_SESSION['lang'];
         $lang_path  = LANGUAGES_PATH . DS . $language . DS . str_replace("|" , DS, $path) . ".lang.php";
+
         if(file_exists($lang_path)){
             require_once $lang_path;
 
@@ -21,16 +22,27 @@ class Language{
             if( isset($lang_data_head) && !empty($lang_data_head))
                     $this->_head_Dictionry = array_merge($this->_head_Dictionry,$lang_data_head);
             
-        }else{
-            //trigger_error("The Language File is not Found", E_USER_ERROR);
-        }  
+        } 
     }
 
+    public function feedKey($key,array $data){
+        $dic = $this->get($key);
+        if(!empty($dic)){
+            array_unshift($data, $dic);
+            return call_user_func_array("sprintf",$data);
+        }else
+            return "";
+        
+    }
 
+    public function get($key){
+        return array_key_exists($key, $this->_content_Dictionry) ? $this->_content_Dictionry[$key] : "";
+    }
     public function getContentDictionary(){
         return $this->_content_Dictionry;
     }
     public function getheadDictionary(){
         return $this->_head_Dictionry;
     }
+
 }
