@@ -4,6 +4,7 @@ namespace STORE\CORE;
 
 class Router
 {
+    use functions;
     const ControllersNameSpace  = "STORE\Controllers\\";
     const NotFoundController    = "NotFoundController";
     const NotFoundDir           = "notfound";
@@ -43,6 +44,19 @@ class Router
             $this->_controller = "notfound";
             $this->_action = "default";
             $controllerClass = self::ControllersNameSpace . self::NotFoundController;
+        }
+        if(!$this->_registry->authentication->is_authorized()){
+            if($this->_controller !== "auth"){
+                $this->redirect("/auth/login");
+            }
+        }else{
+            if($this->_controller == "auth" && $this->_action == "login"){
+                $url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "/";
+                $this->redirect($url);
+            }
+            // if(!$this->_registry->authentication->has_Access($this->_controller, $this->_action)){
+            //     $this->redirect("/accessdenied");
+            // }
         }
         $controller = new $controllerClass();
         $this->_action      = strtolower($this->_action);

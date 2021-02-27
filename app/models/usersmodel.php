@@ -5,36 +5,33 @@ class UsersModel extends AbstractModal
 {
     private $userid;
     public $username;
-    public $password;
+    public $Password;
+    public $Status = 1;
     public $email;
-    public $Phonenumber;
+    public $phonenumber;
     public $SubscriptionDate;
-    public $lastLogin;
-    public $Groupid;
+    public $LastLogin;
+    public $usergroup;
+
+    public $profile;
+    public $privileges;
 
     protected static $tableName     = "users";
     protected static $primaryKey    = "userid";
     protected static $tableSchema   = array(
                     "username"          =>  self::DATA_TYPE_STR,
-                    "password"        =>  self::DATA_TYPE_STR,
-                    "email"           =>  self::DATA_TYPE_STR,
-                    "Phonenumber"  =>  self::DATA_TYPE_STR,
+                    "Password"          =>  self::DATA_TYPE_STR,
+                    "email"             =>  self::DATA_TYPE_STR,
+                    "phonenumber"       =>  self::DATA_TYPE_STR,
+                    "Status"            =>  self::DATA_TYPE_INT,
                     "SubscriptionDate"  =>  self::DATA_TYPE_STR,
-                    "LastLogin"  =>  self::DATA_TYPE_STR,
-                    "Groupid"  =>  self::DATA_TYPE_INT
+                    "LastLogin"         =>  self::DATA_TYPE_STR,
+                    "usergroup"         =>  self::DATA_TYPE_INT
                 );
 
 
 
-    const PATTER_VALIDATION_NAMES = "/^(?:[A-Za-z]){2,}$/";
-    const PATTER_SIPLT_Phonenumber = "/^([0-9]{3})([0-9]{7})$/";
-
-    // public function __construct($name,$salary,$tax,$Phonenumber){
-    //     $this->name = $name;
-    //     $this->salary = $salary;
-    //     $this->tax = $tax;
-    //     $this->Phonenumber = $Phonenumber;
-    // }
+    
      protected static function get_all_properties() {
          return array_keys(get_class_vars(__CLASS__));
     }
@@ -48,73 +45,56 @@ class UsersModel extends AbstractModal
     }
 
 
-    public function get_salary(){
-        return $this->salary * ($this->tax/100);
+    public static function UsernameExsits($username){
+        return static::getByCondition(["username" => $username]);
     }
-    private function Validate_data(){
-        $error = -1;
-        if(!preg_match(self::PATTER_VALIDATION_NAMES, $this->name)){
-            $error = "Please Enter Valid Name";
-        }elseif(!is_numeric($this->salary) || empty($this->salary)){
-            $error = "Please Enter Valid Salary";
-        }elseif(!is_numeric($this->tax)  ||  empty($this->tax)){
-            $error = "Please Enter Valid Tax";
-        }elseif(strlen($this->Phonenumber) != 10 || !is_numeric($this->Phonenumber)){
-            $error="Please Enter Valid Phone Number";
-        }
-        if($error === -1) {
-            $this->Phonenumber = self::convertNumberPhoneFromIntToStandard($this->Phonenumber);
-            return true;
+    public static function EmailExsits($email){
+        return static::getByCondition(["email" => $email]);
+    }
+
+
+    public static function getAll(){
+        $sql = "SELECT users.* , users_groups.groupname as 'GroupName' FROM `users` INNER JOIN users_groups ON users.usergroup = users_groups.groupid";
+        return static::get($sql);
+    }
+
+    public static function getUsers(UsersModel $user){
+        $sql = "SELECT users.* , users_groups.groupname as 'GroupName' FROM `users` INNER JOIN users_groups ON users.usergroup = users_groups.groupid WHERE userid != '" . $user->get_primary_key() . "'";
+        return static::get($sql);
+    }
+
+    public static function authenticate($username){
+        $sql = "SELECT * , (SELECT groupname FROM users_groups WHERE groupid = " . static::$tableName . ".usergroup) groupname FROM " . static::$tableName . " WHERE username = :username";
+        return static::getOne($sql, ["username" => $username]);
+       
+    }
+
+    public function create_new_user(){
+       if($this->create()){
+            if($this->profile !== null && is_object($this->profile)){
+                $this->profile->userid = $this->get_primary_key();
+                $this->profile->create_profile();
+            }
+           return true;
+       }else{
+           return false;
+       }
+    }
+
+    public function update_user(){
+        if($this->update()){
+            return true;           
         }else{
-            return $error;
-        }
-    }
-
-    public static function convertNumberPhoneFromIntToStandard($num){
-        return preg_replace(self::PATTER_SIPLT_Phonenumber,"$1-$2",$num);
-    }
-
-    public static function convertNumberPhoneFromStandardToInt($num){
-        return str_replace("-","",$num);
-    }
-
-
-    public function create_new_employee(){
-        $res = $this->Validate_data();
-        if($res === true){
-            return $this->create();           
-        }else{
-            return $res;
-        }
-    }
-
-    public function update_employee(){
-        $res = $this->Validate_data();
-        if($res === true){
-            return $this->update();           
-        }else{
-            return $res;
+            return false;
         }
     }
 
     public function save(){
-        if(isset($this->id) && $this->id > 0)
-            return $this->update_employee();
+        if(!isset($this->{static::$primaryKey}) || empty($this->{static::$primaryKey}))
+            return $this->create_new_user();
         else
-            return $this->create_new_employee();
+            return $this->update_user();
     }
 
-    public function delete_employee(){
-        return $this->delete();
-    }
-
-
-    public static function get_By_pk($pk){
-        $obj = parent::get_By_pk($pk);
-        if($obj !== false && is_object($obj)){
-            $obj->Phonenumber = self::convertNumberPhoneFromStandardToInt($obj->Phonenumber);
-        }
-        return $obj;
-    }
 
 }

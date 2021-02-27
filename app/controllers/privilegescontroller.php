@@ -12,12 +12,16 @@ class PrivilegesController extends AbstractController
 
 
     public function defaultAction(){
+        $this->language->load("template" . "|" . "common");
+        $this->language->load(strtolower($this->_controller) . "|" . strtolower($this->_action));
         $this->_data['privileges'] = PrivilegesModel::getAll(); 
         $this->view();
     }
 
     public function createAction(){
+        $this->language->load("template" . "|" . "common");
         $this->language->load($this->_controller . "|" . "labels");
+        $this->language->load(strtolower($this->_controller) . "|" . strtolower($this->_action));
 
         if(isset($_POST['create'])){
             $privilege = new PrivilegesModel();
@@ -41,6 +45,8 @@ class PrivilegesController extends AbstractController
         if($privilege === false) $this->redirect("/privileges");
 
         $this->language->load($this->_controller . "|" . "labels");
+        $this->language->load("template" . "|" . "common");
+        $this->language->load(strtolower($this->_controller) . "|" . strtolower($this->_action));
 
         if(isset($_POST['edit'])){
             $privilege->privilegetitle = $this->StrFilter($_POST['privilegetitle']);

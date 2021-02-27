@@ -22,6 +22,10 @@ abstract class AbstractModal {
     public static function View_Table_Schema(){
         return static::$tableSchema;
     }
+    
+    public static function getTableName(){
+        return static::$tableName;
+    }
 
     private function prepareActionsParams(){
         $Stmtparams = '';
@@ -116,19 +120,8 @@ abstract class AbstractModal {
 
 
     private static function bindGetParams(\PDOStatement  &$stmt, array $schema){
-        foreach ($schema as $param => $paramInfo){
-            $value = $paramInfo[0];
-            $type = $paramInfo[1];
-            $class_name = get_called_class();
-            if(property_exists($class_name, $param)) {
-                if($type == 4){
-                    $value = filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                    $stmt->bindParam(':' . $param, $value);
-                }else{
-                    //echo $this->{$param};
-                    $stmt->bindParam(':' . $param, $value, $type);
-                }
-            }
+        foreach ($schema as $param => $value){
+            $stmt->bindParam(':' . $param, $value);
         }
     }
 
@@ -178,11 +171,36 @@ abstract class AbstractModal {
         }
     }
 
+    public static function getOne($sql , array $colums = []){
+       
+        global $con;
+        $cols = array_keys($colums);
+        $stmt = $con->prepare($sql);
+        $prep = [];
+        if(!empty($colums)){
+            foreach ($colums as $col => $value){        
+                $col = ":" . $col;
+                $prep[$col] = $value;
+            }
+        }
+       // static::bindByConditionParams($stmt, $colums);
+        if($stmt->execute($prep)){
+            $res = static::fetchClass($stmt);
+            return empty($res[0]) ? false : array_shift($res);
+        }else{
+            return false;
+        }
+    }
 
-    public static function get($sql, array $schema){
+
+
+
+    public static function get($sql, array $schema = []){
         global $con;
         $stmt = $con->prepare($sql);
-        static::bindGetParams($stmt, $schema);
+        if(!empty($schema))
+            static::bindGetParams($stmt, $schema);
+            
         if($stmt->execute()){
             $res = static::fetchClass($stmt);
             return empty($res[0]) ? false : $res;

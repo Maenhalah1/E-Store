@@ -1,6 +1,7 @@
 <?php
 $lang_data_content = [
     'text_notfound_page'  => "الصفحة غير موجودة",
+    'text_accessdenied_page'  => " عذراً ، لا يوجد لديك صلاحيات للوصول الى هذه الصفحة",
     'text_header_nav_title' =>'اللوحة الارئيسية',
     'text_left_nav_dashboard'   => 'لوحة التحكم',
     'text_left_nav_users'   => 'المستخدمين',

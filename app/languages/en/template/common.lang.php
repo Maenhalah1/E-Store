@@ -1,6 +1,7 @@
 <?php
 $lang_data_content = [
     'text_notfound_page'   => 'The Page is Not Found',
+    'text_accessdenied_page'   => 'Sorry, You Dont Have Access To This Page',
     'text_header_nav_title' => 'Dashboard',
     'text_left_nav_dashboard'   => 'Dashboard',
     'text_left_nav_users'   => 'Users',

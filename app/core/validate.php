@@ -10,9 +10,9 @@ trait validate{
         "number"                => "/^(?:\-?[0-9]+)(?:\.[0-9]+)?$/",
         "int"                   => "/^[0-9]+$/",
         "float"                 => "/^((?:[0-9])+\.(?:[0-9])+)$/",
-        "English_Chars"         => "/^[A-Za-z\s]+$/",
+        "English_Chars"         => "/^[A-Za-z ]+$/",
         "English_Chars_Num"     => "/^[A-Za-z\s0-9]+$/",
-        "Arabic_Char"           => "/^[\p{Arabic}\s]+$/u",
+        "Arabic_Chars"           => "/^[\p{Arabic} ]+$/u",
         "Arabic_Char_Num"       => "/^[\p{Arabic}\s0-9]+$/u",
         "email"                 => "/^([\w0-9_\-\.]+)@([\w\-]+\.)+[\w]{2,6}$/",
         "date"                  => "/^([1|2][0-9][0-9][0-9])[\-\/](0?[1-9]|1[0-2])[\-\/](0?[1-9]|[1-2][0-9]|3[0-1])$/",
@@ -45,7 +45,7 @@ trait validate{
 
     public static function is_EnglishChars_validate($value){
         $value = trim($value);
-        return (bool)preg_match(static::$RegExp_Patterns['English_Characters'], $value);
+        return (bool)preg_match(static::$RegExp_Patterns['English_Chars'], $value);
     }
 
     public static function is_EnglishCharsAndNum_validate($value){
@@ -55,7 +55,7 @@ trait validate{
 
     public static function is_ArabicChars_validate($value){
         $value = trim($value);
-        return (bool)preg_match(static::$RegExp_Patterns['Arabic_Characters'], $value);
+        return (bool)preg_match(static::$RegExp_Patterns['Arabic_Chars'], $value);
     }
 
     public static function is_ArabicCharsAndNum_validate($value){
@@ -163,5 +163,9 @@ trait validate{
 
     public static function PhoneNumber_validate($value){
         return (bool) preg_match(static::$RegExp_Patterns['phonenumber'], $value);
+    }
+
+    public static function names_validate($value){
+        return (bool) self::is_EnglishChars_validate($value) ? true : (self::is_ArabicChars_validate($value) ? true : false);
     }
 }

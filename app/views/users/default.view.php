@@ -7,7 +7,10 @@
                 <?=$text_links_privileges?>
             </a>
           </div>
-         
+          <?php $massege = $this->masseges->getMassege("userAction");?>
+            <?php if($massege !== null):?>
+                <p class="Massege t<?=$massege[1]?>"><?=$massege[0]?><p>
+            <?php endif;?>
           <a href="/users/create" class="add-btn"><?=$text_adduser?></a>
             <table class="table-show-emp-info">
                 <tr>
@@ -21,18 +24,19 @@
                     <td><?=$text_table_control?></td>
                 </tr>
         <?php if(isset($users) && !empty($users)):?>
-                <?php foreach ($users as $users):?>
+                <?php foreach ($users as $user): ?>
+                
                     <tr>
-                        <td><?=$users->get_primary_key()?></td>
-                        <td><?=$users->username?></td>
-                        <td>$<?=$users->email?></td>
-                        <td><?=$users->Phonenumber?></td>
-                        <td><?=$users->SubscriptionDate?></td>
-                        <td><?=$users->LastLogin?></td>
-                        <td><?=$users->Groupid?></td>
+                        <td><?=$user->get_primary_key()?></td>
+                        <td><?=$user->username?></td>
+                        <td><?=$user->email?></td>
+                        <td><?=$user->phonenumber?></td>
+                        <td><?=$user->SubscriptionDate?></td>
+                        <td><?=$user->LastLogin?></td>
+                        <td><?=$user->GroupName?></td>
                         <td>
-                            <!-- <a href="/employee/edit/<?=$users->get_primary_key()?>">Edit</a>
-                            <a href="/employee/delete/<?=$users->get_primary_key()?>">Delete</a> -->
+                            <a href="/users/edit/<?=$user->get_primary_key()?>">Edit</a>
+                            <a href="/users/delete/<?=$user->get_primary_key()?>" onclick="if(!confirm('<?=$text_table_delete_confirm?>')) return false">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach;?>

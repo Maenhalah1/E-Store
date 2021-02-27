@@ -13,12 +13,17 @@ class UsersGroupsController extends AbstractController
 
 
     public function defaultAction(){
+        $this->language->load("template" . "|" . "common");
+        $this->language->load(strtolower($this->_controller) . "|" . strtolower($this->_action));
         $this->_data['groups'] = UsersGroupsModel::getAll(); 
         $this->view();
     }
 
     public function createAction(){
+        $this->language->load("template" . "|" . "common");
         $this->language->load($this->_controller . "|" . "labels");
+        $this->language->load(strtolower($this->_controller) . "|" . strtolower($this->_action));
+
         $this->_data['privileges'] = PrivilegesModel::getAll();
 
         if(isset($_POST['create'])){
@@ -53,7 +58,10 @@ class UsersGroupsController extends AbstractController
             $this->redirect("/usersgroups");
         }
 
+        
+        $this->language->load("template" . "|" . "common");
         $this->language->load($this->_controller . "|" . "labels");
+        $this->language->load(strtolower($this->_controller) . "|" . strtolower($this->_action));
 
         $this->_data['privileges'] = PrivilegesModel::getAll();
         $this->_data["privilegesGroup"] = $privilegesGroupIds = GroupPrivilegesModel::getGroupPrivilegesIds($groupid);
@@ -84,9 +92,7 @@ class UsersGroupsController extends AbstractController
         $this->_data["group"] = $group;
         $this->view();
     }
-        
-
-        
+            
     public function deleteAction(){
         $groupid = $this->IntFilter($this->_params[0]);
         $group = UsersGroupsModel::get_By_pk($groupid);

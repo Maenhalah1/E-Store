@@ -17,6 +17,7 @@ $lang_data_content = [
     'text_table_lastlogin' => "اخر دخول",
     'text_table_usergroup' => "فئة المستخدم",
     'text_table_control' => "التحكم",
+    'text_table_delete_confirm' => "هل أنت متأكد من حذف المستخدم ؟"
 
 
 ];

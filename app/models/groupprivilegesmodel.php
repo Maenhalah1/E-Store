@@ -50,6 +50,18 @@ class GroupPrivilegesModel extends AbstractModal
         return $privilegesGroupIds;
     }
 
+    public static function getPrivilegesByGroup($groupid){
+        $sql = "SELECT up.privilege FROM " . static::$tableName . " pg";
+        $sql .= " INNER JOIN user_privileges up ON up.privilegeid = pg.privilegeid";
+        $sql .= " WHERE pg.groupid = :groupid";
+        $privileges = static::get($sql, ['groupid'=> $groupid]);
+        $privilegesTitle = [];
+        foreach($privileges as $privilege){
+            $privilegesTitle[] = $privilege->privilege;
+        }
+        return $privilegesTitle;
+    }
+
 
 
 

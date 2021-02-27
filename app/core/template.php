@@ -24,6 +24,10 @@ class Template {
         return isset($this->_registry->$name) ? $this->_registry->$name : "";
     }
 
+    public function swap_templete(array $template){
+        $this->_template_parts['content'] = $template;
+    }
+   
     public function setView($viewpath) {
         $this->_view_path = $viewpath;
     }

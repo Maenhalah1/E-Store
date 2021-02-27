@@ -4,7 +4,7 @@
     margin: 0;
 }
 body{
-    background-color:#fff;
+    background-color:#f2f2f2;
     font-family: 'Cairo', sans-serif;
     direction: rtl;
 }
@@ -37,6 +37,95 @@ p.Massege.t3 {
 p.Massege.t4 {
     background-color: #6f9eaf;
 }
+
+div.msg-field-forms{
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-size: 15px;
+    font-weight: 700;
+
+}
+div.msg-field-forms.t2{
+    color:#b30909;
+}
+
+/******* Login Section ********/
+.login-box {
+    width: 390px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    display: block;
+    margin: 100px auto;
+}
+.login-box .login-header{
+    text-align: center;
+}
+.login-box .login-header hr{
+    border: none;
+    border: 2px solid #0079ad;
+    border-radius: 5px;
+    width: 150px;
+    margin: auto;
+}
+.login-box .login-header h3{
+    font-size: 25px;
+    color:#444;
+}
+.login-box .img-box{
+
+    width: 170px;
+    height: auto;
+    margin: 20px auto;
+}
+.login-box .img-box img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.login-box .inputs-box{
+}
+.login-box .inputs-box .input-field {
+    position: relative;
+    width: 320px;
+    margin: 12px auto;
+}
+.login-box .inputs-box .input-field input{
+    font-family: 'Cairo', sans-serif;
+}
+.login-box .inputs-box .input-field .text, .login-box .inputs-box .input-field .button{
+    width: 100%;
+    border-radius: 7px;
+}
+
+.login-box .inputs-box .input-field .text{
+    font-size: 17px;
+    padding: 9px;
+    background-color: #f2f2f2;
+    border: 1px solid #eee;
+}
+.login-box .inputs-box .input-field .text:focus ,
+ .login-box .inputs-box .input-field .text:active,
+ .login-box .inputs-box .input-field .text:hover{
+     outline: none;
+ }
+ .login-box .inputs-box .input-field .button:focus ,
+ .login-box .inputs-box .input-field .button:active,
+ .login-box .inputs-box .input-field .button:hover{
+    background-color: #11698e;
+}
+ .login-box .inputs-box .input-field .button{
+     cursor: pointer;
+     background-color: #0079ad;
+     border: none;
+     outline: none;
+     color: #eee;
+     padding: 9px;
+     font-size: 18px;
+
+
+     
+ }
 
 
 

@@ -16,6 +16,5 @@ $lang_data_content = [
     'text_table_lastlogin' => "Last Login",
     'text_table_usergroup' => "User Group",
     'text_table_control' => "Control",
-
-
+    'text_table_delete_confirm' => "Are You Sure To Delete User ?"
 ];

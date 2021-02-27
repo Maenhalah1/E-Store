@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0634163f-e742-4a79-ae73-381cd71f1b76" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/controllers/userscontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/userscontroller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/filterInput.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/filterInput.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/validation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/languages/ar/users/labels.lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/languages/ar/users/labels.lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/languages/ar/users/validation.lang.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/languages/ar/validation/common.lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/languages/ar/validation/common.lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/languages/ar/validation/users.lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/languages/ar/validation/users.lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/languages/en/users/labels.lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/languages/en/users/labels.lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/languages/en/validation/common.lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/languages/en/validation/common.lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/languages/en/validation/users.lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/languages/en/validation/users.lang.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/abstractmodal.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/abstractmodal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/usersmodel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/usersmodel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/create.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/create.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/default.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/default.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/mainar.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/mainar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/mainen.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/mainen.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sessions/sess_b0hf7lng31dpdbj3h51l5t0rsd" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1ohHw3eIeZ3O7uJ83TYyPnR9qjr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0634163f-e742-4a79-ae73-381cd71f1b76" name="Default Changelist" comment="" />
+      <created>1613732136853</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613732136853</updated>
+      <workItem from="1613732138009" duration="438000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

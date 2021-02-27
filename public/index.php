@@ -3,6 +3,7 @@ ob_start();
 !defined('DS') ? define('DS', DIRECTORY_SEPARATOR) : "";
 
 use STORE\controllers\abstractcontroller;
+use STORE\CORE\Authentication;
 use STORE\CORE\DATABASE\DBHandler;
 use STORE\CORE\Language;
 use STORE\CORE\Messenger;
@@ -21,21 +22,23 @@ if (!$session->checkFingerprint()){
     $session->endSession();
 }
 
-$template_parts = require_once (".." . DS . 'app' . DS . 'config' . DS . 'templateconfig.php');
 
 $db = new DBHandler();
 if(!isset($session->lang))
     $session->lang = LANGUAGE_DEFAULT;
+$template_parts = require_once (".." . DS . 'app' . DS . 'config' . DS . 'templateconfig.php');
 
 $language = new Language();
 $Messenger = Messenger::getInstance($session);
 $Validation = Validation::getInstance($language, $Messenger);
+$auth = Authentication::getInstance($session);
 
 $registry = Registry::getInstance();
-$registry->session      = $session;
-$registry->language     = $language;
-$registry->masseges     = $Messenger;
-$registry->validation   = $Validation;
+$registry->session          = $session;
+$registry->language         = $language;
+$registry->masseges         = $Messenger;
+$registry->validation       = $Validation;
+$registry->authentication   = $auth;
 
 $template = new Template($template_parts);
 $con = $db->PDOconn;
